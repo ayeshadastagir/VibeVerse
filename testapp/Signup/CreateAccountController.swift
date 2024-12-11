@@ -7,6 +7,9 @@
 
 import Foundation
 import UIKit
+import FirebaseCore
+import FirebaseAuth
+import FirebaseFirestore
 
 class CreateAccountController: UIViewController {
 
@@ -98,7 +101,52 @@ class CreateAccountController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @objc func continueButtonTapped() {
-        self.navigationController?.pushViewController(AddDobController(), animated: true)
+        guard let firstName = firstNameField.text, !firstName.isEmpty,
+              let lastName = lastNameField.text, !lastName.isEmpty,
+              let phone = phoneField.text, !phone.isEmpty,
+              let email = emailField.text, !email.isEmpty,
+              let password = passwordField.text, !password.isEmpty else {
+            // Show an error message if any field is empty
+            showError(message: "Please fill in all fields.")
+            return
+        }
+        
+        // Firebase Authentication - Create user with email and password
+        Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
+            if let error = error {
+                // Handle error
+                self.showError(message: error.localizedDescription)
+                return
+            }
+            
+            // User successfully created, now store additional details in Firestore
+            let userId = authResult?.user.uid
+            let db = Firestore.firestore()
+            
+            let userData: [String: Any] = [
+                "firstName": firstName,
+                "lastName": lastName,
+                "phone": phone,
+                "email": email
+            ]
+            
+            db.collection("users").document(userId!).setData(userData) { error in
+                if let error = error {
+                    // Handle Firestore error
+                    self.showError(message: error.localizedDescription)
+                } else {
+                    // Successfully saved user data to Firestore
+                    self.navigationController?.pushViewController(AddDobController(), animated: true)
+                }
+            }
+        }
     }
+
+    private func showError(message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+
     
 }
