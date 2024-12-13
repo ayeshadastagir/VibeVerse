@@ -112,8 +112,7 @@ class CreateAccountController: UIViewController {
             showError(message: "Please fill in all fields.")
             return
         }
-        
-        // Create a User instance
+
         let newUser = User(firstName: firstName, lastName: lastName, phone: phone, email: email)
         
         // Firebase Authentication - Create user with email and password
