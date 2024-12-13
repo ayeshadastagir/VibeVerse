@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F69F8DB3D86340C68CD2D14 /* Pods_testapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6ECF7598F043E3E6D59B265 /* Pods_testapp.framework */; };
+		7B07171F2D0C0DCE0081FA62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B07171E2D0C0DCE0081FA62 /* GoogleService-Info.plist */; };
 		7BAB421F2D084FBB0024EF82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB421E2D084FBB0024EF82 /* AppDelegate.swift */; };
 		7BAB42212D084FBB0024EF82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB42202D084FBB0024EF82 /* SceneDelegate.swift */; };
 		7BAB42232D084FBB0024EF82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB42222D084FBB0024EF82 /* ViewController.swift */; };
@@ -27,13 +28,13 @@
 		7BAB42512D08528D0024EF82 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB42502D08528D0024EF82 /* TextField.swift */; };
 		7BAB42532D0852A30024EF82 /* DropdownField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB42522D0852A30024EF82 /* DropdownField.swift */; };
 		7BAB42552D0852BE0024EF82 /* AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB42542D0852BE0024EF82 /* AppExtensions.swift */; };
-		7BC9BE502D09718500EF39E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BC9BE4F2D09718500EF39E2 /* GoogleService-Info.plist */; };
 		7BD02E542D099E8A009A8CF1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD02E532D099E8A009A8CF1 /* User.swift */; };
 		7BD02E572D099FD0009A8CF1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD02E562D099FD0009A8CF1 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7507155ECCDBBC762C1A541F /* Pods-testapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testapp.release.xcconfig"; path = "Target Support Files/Pods-testapp/Pods-testapp.release.xcconfig"; sourceTree = "<group>"; };
+		7B07171E2D0C0DCE0081FA62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7BAB421B2D084FBB0024EF82 /* testapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BAB421E2D084FBB0024EF82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BAB42202D084FBB0024EF82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		7BAB42502D08528D0024EF82 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		7BAB42522D0852A30024EF82 /* DropdownField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownField.swift; sourceTree = "<group>"; };
 		7BAB42542D0852BE0024EF82 /* AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtensions.swift; sourceTree = "<group>"; };
-		7BC9BE4F2D09718500EF39E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7BD02E532D099E8A009A8CF1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7BD02E562D099FD0009A8CF1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8818E748BB32997540E098AE /* Pods-testapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testapp.debug.xcconfig"; path = "Target Support Files/Pods-testapp/Pods-testapp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 				7BAB42222D084FBB0024EF82 /* ViewController.swift */,
 				7BAB42272D084FBE0024EF82 /* Assets.xcassets */,
 				7BAB422C2D084FBE0024EF82 /* Info.plist */,
-				7BC9BE4F2D09718500EF39E2 /* GoogleService-Info.plist */,
+				7B07171E2D0C0DCE0081FA62 /* GoogleService-Info.plist */,
 			);
 			path = testapp;
 			sourceTree = "<group>";
@@ -248,7 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BAB42282D084FBE0024EF82 /* Assets.xcassets in Resources */,
-				7BC9BE502D09718500EF39E2 /* GoogleService-Info.plist in Resources */,
+				7B07171F2D0C0DCE0081FA62 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

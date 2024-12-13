@@ -16,6 +16,7 @@ pod 'Firebase/Auth'
 pod 'GTMSessionFetcher/Core'
 pod 'Firebase/Analytics'
 pod 'FirebaseAnalytics'
+pod 'GoogleSignIn'
 
 
 
