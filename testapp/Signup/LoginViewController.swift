@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -41,7 +42,7 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .beige
         setupViews()
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
     }
     
     private func setupViews() {
@@ -126,6 +127,36 @@ class LoginViewController: UIViewController {
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
+    @objc func loginButtonTapped() {
+        // Validate email and password fields
+        guard let email = emailField.text, !email.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty else {
+            showError(message: "Please enter both email and password.")
+            return
+        }
+        
+        // Firebase Authentication - Sign in user with email and password
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                // Show error message if sign-in fails
+                self.showError(message: error.localizedDescription)
+                return
+            }
+            
+            // Successful login - Navigate to HomeViewController
+            let homeViewController = HomeViewController()
+            homeViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(homeViewController, animated: true)
+        }
+    }
+    func showError(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true, completion: nil)
+    }
+
     
     @objc private func togglePasswordVisibility() {
         passwordTextField.isSecureTextEntry.toggle()

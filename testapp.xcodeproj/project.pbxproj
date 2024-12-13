@@ -28,6 +28,8 @@
 		7BAB42532D0852A30024EF82 /* DropdownField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB42522D0852A30024EF82 /* DropdownField.swift */; };
 		7BAB42552D0852BE0024EF82 /* AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAB42542D0852BE0024EF82 /* AppExtensions.swift */; };
 		7BC9BE502D09718500EF39E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BC9BE4F2D09718500EF39E2 /* GoogleService-Info.plist */; };
+		7BD02E542D099E8A009A8CF1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD02E532D099E8A009A8CF1 /* User.swift */; };
+		7BD02E572D099FD0009A8CF1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD02E562D099FD0009A8CF1 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		7BAB42522D0852A30024EF82 /* DropdownField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownField.swift; sourceTree = "<group>"; };
 		7BAB42542D0852BE0024EF82 /* AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtensions.swift; sourceTree = "<group>"; };
 		7BC9BE4F2D09718500EF39E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7BD02E532D099E8A009A8CF1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7BD02E562D099FD0009A8CF1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8818E748BB32997540E098AE /* Pods-testapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testapp.debug.xcconfig"; path = "Target Support Files/Pods-testapp/Pods-testapp.debug.xcconfig"; sourceTree = "<group>"; };
 		B6ECF7598F043E3E6D59B265 /* Pods_testapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_testapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -100,6 +104,8 @@
 		7BAB421D2D084FBB0024EF82 /* testapp */ = {
 			isa = PBXGroup;
 			children = (
+				7BD02E552D099FAE009A8CF1 /* LoggedIn */,
+				7BD02E522D099E77009A8CF1 /* Model */,
 				7BAB42362D0850FB0024EF82 /* LandingPageController.swift */,
 				7BAB42352D0850D80024EF82 /* Signup */,
 				7BAB42342D0850BC0024EF82 /* Application */,
@@ -155,6 +161,22 @@
 				7BAB42442D0851D10024EF82 /* LoginViewController.swift */,
 			);
 			path = Signup;
+			sourceTree = "<group>";
+		};
+		7BD02E522D099E77009A8CF1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7BD02E532D099E8A009A8CF1 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7BD02E552D099FAE009A8CF1 /* LoggedIn */ = {
+			isa = PBXGroup;
+			children = (
+				7BD02E562D099FD0009A8CF1 /* HomeViewController.swift */,
+			);
+			path = LoggedIn;
 			sourceTree = "<group>";
 		};
 		AFF81E0F6BD948DE4ACCE128 /* Frameworks */ = {
@@ -294,9 +316,11 @@
 				7BAB42392D0851210024EF82 /* CreateAccountController.swift in Sources */,
 				7BAB42492D08522E0024EF82 /* ButtonWithLabel.swift in Sources */,
 				7BAB42452D0851D10024EF82 /* LoginViewController.swift in Sources */,
+				7BD02E572D099FD0009A8CF1 /* HomeViewController.swift in Sources */,
 				7BAB42472D08521A0024EF82 /* ButtonWithImage.swift in Sources */,
 				7BAB424D2D0852590024EF82 /* Label.swift in Sources */,
 				7BAB42412D08519F0024EF82 /* PersonalDetailsViewController.swift in Sources */,
+				7BD02E542D099E8A009A8CF1 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

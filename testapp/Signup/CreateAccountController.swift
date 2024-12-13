@@ -23,7 +23,7 @@ class CreateAccountController: UIViewController {
     private let passwordField = TextField(textTitle: "Password", backgroundcolor: .clear)
     private let continueButton = ButtonWithLabel(title: "Continue", backgroundColor: .brown, titlecolor: .white, cornerRadius: 10)
     private let loginLabel = Label(texttitle: "Already have an account?", textcolor: .brown, font: .systemFont(ofSize: 16), numOflines: 1, textalignment: .center)
-    private let loginButtonLabel = Label(texttitle: "Login", textcolor: .black, font: .systemFont(ofSize: 16), numOflines: 0, textalignment: .left)
+    private let loginButtonLabel = ButtonWithLabel(title: "Login", font: .systemFont(ofSize: 20), backgroundColor: .clear)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,7 @@ class CreateAccountController: UIViewController {
         setupViews()
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         continueButton.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
+        loginButtonLabel.addTarget(self, action: #selector(navigateToLogin), for: .touchUpInside)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
@@ -93,13 +94,14 @@ class CreateAccountController: UIViewController {
             loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -20.widthRatio),
             
             loginButtonLabel.leadingAnchor.constraint(equalTo: loginLabel.trailingAnchor),
-            loginButtonLabel.topAnchor.constraint(equalTo: loginLabel.topAnchor),
+            loginButtonLabel.topAnchor.constraint(equalTo: loginLabel.topAnchor, constant: -10.autoSized),
         ])
     }
     
     @objc func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
+    
     @objc func continueButtonTapped() {
         guard let firstName = firstNameField.text, !firstName.isEmpty,
               let lastName = lastNameField.text, !lastName.isEmpty,
@@ -111,6 +113,9 @@ class CreateAccountController: UIViewController {
             return
         }
         
+        // Create a User instance
+        let newUser = User(firstName: firstName, lastName: lastName, phone: phone, email: email)
+        
         // Firebase Authentication - Create user with email and password
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             if let error = error {
@@ -120,17 +125,14 @@ class CreateAccountController: UIViewController {
             }
             
             // User successfully created, now store additional details in Firestore
-            let userId = authResult?.user.uid
+            guard let userId = authResult?.user.uid else {
+                self.showError(message: "Failed to retrieve user ID.")
+                return
+            }
+            
             let db = Firestore.firestore()
             
-            let userData: [String: Any] = [
-                "firstName": firstName,
-                "lastName": lastName,
-                "phone": phone,
-                "email": email
-            ]
-            
-            db.collection("users").document(userId!).setData(userData) { error in
+            db.collection("users").document(userId).setData(newUser.toDictionary()) { error in
                 if let error = error {
                     // Handle Firestore error
                     self.showError(message: error.localizedDescription)
@@ -148,5 +150,8 @@ class CreateAccountController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
+    @objc func navigateToLogin() {
+        self.navigationController?.pushViewController(LoginViewController(), animated: true)
+    }
     
 }
