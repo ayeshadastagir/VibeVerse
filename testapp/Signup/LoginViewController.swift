@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseAuth
+import GoogleSignIn
+import FirebaseCore
 
 class LoginViewController: UIViewController {
     
@@ -43,6 +45,7 @@ class LoginViewController: UIViewController {
         setupViews()
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        googleButton.addTarget(self, action: #selector(googleButtonTapped), for: .touchUpInside)
     }
     
     private func setupViews() {
@@ -120,7 +123,7 @@ class LoginViewController: UIViewController {
             appleButton.heightAnchor.constraint(equalToConstant: 45.autoSized),
             appleButton.widthAnchor.constraint(equalToConstant: 45.widthRatio),
             appleButton.topAnchor.constraint(equalTo: orLabelImage.bottomAnchor, constant: 20.autoSized),
-
+            
         ])
     }
     
@@ -156,7 +159,38 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true, completion: nil)
     }
-
+    
+    @objc func googleButtonTapped() {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                self.showError(message: "Google Sign-In failed: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString else {
+                self.showError(message: "Failed to retrieve user information.")
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: user.accessToken.tokenString)
+            
+            Auth.auth().signIn(with: credential) { authResult, error in
+                if let error = error {
+                    self.showError(message: "Firebase Authentication failed: \(error.localizedDescription)")
+                    return
+                }
+                
+                // Successful sign-in
+                let homeViewController = HomeViewController()
+                homeViewController.modalPresentationStyle = .fullScreen
+                self.navigationController?.pushViewController(homeViewController, animated: true)
+            }
+        }
+    }
     
     @objc private func togglePasswordVisibility() {
         passwordTextField.isSecureTextEntry.toggle()
